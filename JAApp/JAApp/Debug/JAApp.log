@@ -1,0 +1,14 @@
+﻿Build started 2020-01-08 11:22:28.
+     1>Project "C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\JAApp\JAApp.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.exe" /INCREMENTAL /NOLOGO "C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JADll.lib" "C:\Users\User\Documents\libjpeg\jpeg-9b\Release\jpeg.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\JADll\mojadll.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.lib" /MACHINE:X86 Debug\JAApp.obj
+         Debug\stdafx.obj
+            Creating library C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.lib and object C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.exp
+     1>JAApp.exp : warning LNK4070: /OUT:JADll.dll directive in .EXP differs from output filename 'C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.exe'; ignoring directive
+     1>C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.exe : warning LNK4086: entrypoint '_mainCRTStartup' is not __stdcall with 12 bytes of arguments; image may not run
+         JAApp.vcxproj -> C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.exe
+     1>Done Building Project "C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\JAApp\JAApp.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.21
