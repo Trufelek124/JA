@@ -1,0 +1,22 @@
+﻿Build started 2020-01-11 00:14:29.
+     1>Project "C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\JAApp\JAApp.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\JAApp.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt JAApp.cpp
+         JAApp.cpp
+     1>c:\users\admin\documents\visual studio 2013\projects\jaapp\jaapp\jaapp.cpp(30): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.exe" /INCREMENTAL /NOLOGO "C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JADll.lib" "C:\Users\admin\Documents\ja\jpeg-9b\Release\jpeg.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.lib" /MACHINE:X86 Debug\JAApp.obj
+         Debug\stdafx.obj
+         jpeg.lib(jerror.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+     1>LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+     1>JAApp.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+         Generating code
+         Finished generating code
+         JAApp.vcxproj -> C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JAApp.exe
+     1>Done Building Project "C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\JAApp\JAApp.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.27
