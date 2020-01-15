@@ -8,6 +8,8 @@
 //using namespace cimg_library;
 #include <jpeglib.h>    
 #include <jerror.h>
+#include <vector>
+#include <string.h>
 
 extern "C" int _stdcall MyProc1(DWORD x, DWORD y);
 
@@ -16,19 +18,21 @@ int main() {
 	//CImg<unsigned char> img("C:\\Users\\admin\\Documents\\ja\\jpeg-9b\\testimg.jpg");
 	//img.display("Image");
 
-
-
+	std::vector<int> red;
+	std::vector<int> green;
+	std::vector<int> blue;
 
 	unsigned char a, r, g, b;
 	int width, height;
 	struct jpeg_decompress_struct cinfo;
 	struct jpeg_error_mgr jerr;
-
+	const char * filePath;
+	filePath = "C:\\Users\\admin\\Documents\\ja\\jpeg-9b\\testimg.jpg";
 	FILE * infile;        /* source file */
 	JSAMPARRAY pJpegBuffer;       /* Output row buffer */
 	int row_stride;       /* physical row width in output buffer */
-	if ((infile = fopen("C:\\Users\\admin\\Documents\\ja\\jpeg-9b\\testimg.jpg", "rb")) == NULL) {
-		fprintf(stderr, "can't open %s\n", "C:\\Users\\admin\\Documents\\ja\\jpeg-9b\\testimg.jpg");
+	if ((infile = fopen(filePath, "rb")) == NULL) {
+		fprintf(stderr, "can't open %s\n", filePath);
 		return 0;
 	}
 	cinfo.err = jpeg_std_error(&jerr);
@@ -62,10 +66,13 @@ int main() {
 				g = r;
 				b = r;
 			}
-			*(pDummy++) = b;
-			*(pDummy++) = g;
-			*(pDummy++) = r;
+		//	*(pDummy++) = b;
+			//*(pDummy++) = g;
+			//*(pDummy++) = r;
 			*(pDummy++) = a;
+			red.push_back(r);
+			green.push_back(g);
+			blue.push_back(b);
 			//std::cout << (int)r << ", ";
 			//std::cout << (int)g << ", ";
 			//std::cout << (int)b << " /";
@@ -88,6 +95,6 @@ int main() {
 	int k = 3, w = 4, c = 0;
 	c = MyProc1(k, w); // wywo³anie procedury asemblerowej z biblioteki
 	std::cout << c << "\n";
-	
+
 	return 0;
 }
