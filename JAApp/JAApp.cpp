@@ -9,6 +9,7 @@ int main() {
 
 
 	pManager->openPictureAndGetRGBVector();
+	pManager->brightenImageCPP();
 	pManager->savePicture();
 
 	int k = 3, w = 4, c = 0;

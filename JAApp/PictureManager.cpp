@@ -62,7 +62,21 @@ bool PictureManager::openPictureAndGetRGBVector(){
 	return true;
 }
 
-
+bool PictureManager::brightenImageCPP(){
+	std::vector<int> rgbAfterChange;
+	for (int i = 0; i < rgb.size(); i++){
+		float tmp = rgb.at(i) * 1.2;
+		if (tmp > 255){
+			tmp = 255;
+		}
+		if (tmp < 0){
+			tmp = 0;
+		}
+		rgbAfterChange.push_back((int)tmp);
+	}
+	rgb = rgbAfterChange;
+	return true;
+}
 
 bool PictureManager::savePicture() {
 	struct jpeg_compress_struct cinfo;
@@ -96,7 +110,7 @@ bool PictureManager::savePicture() {
 
 	jpeg_start_compress(&cinfo, TRUE);
 
-	unsigned char* bytes = new unsigned char[width * 3]; //tutaj wielkosc
+	bytes = new unsigned char[width * 3]; //tutaj wielkosc
 
 	int v = 0;
 
@@ -115,7 +129,7 @@ bool PictureManager::savePicture() {
 	fclose(outfile);
 	jpeg_destroy_compress(&cinfo);
 
-	std::cout << "Done" << std::endl;
+	std::cout << "\n" << "Done" << std::endl;
 
 	return true;
 }

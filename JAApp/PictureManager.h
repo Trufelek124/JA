@@ -17,6 +17,7 @@ public:
 	virtual ~PictureManager();
 
 	bool openPictureAndGetRGBVector();
+	bool brightenImageCPP();
 	bool savePicture();
 
 protected:
@@ -29,6 +30,7 @@ private:
 	struct jpeg_error_mgr jerr;
 	const char * filePath;
 	const char * filePathOut;
+	unsigned char* bytes;
 	FILE * infile;        /* source file */
 	JSAMPARRAY pJpegBuffer;       /* Output row buffer */
 	int row_stride;       /* physical row width in output buffer */
