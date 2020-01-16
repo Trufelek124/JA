@@ -22,12 +22,6 @@ bool PictureManager::openPictureAndGetRGBVector(){
 	width = cinfo.output_width;
 	height = cinfo.output_height;
 
-	unsigned char * pDummy = new unsigned char[width*height * 4];
-	unsigned char * pTest = pDummy;
-	if (!pDummy) {
-		printf("NO MEM FOR JPEG CONVERT!\n");
-		return false;
-	}
 	row_stride = width * cinfo.output_components;
 	pJpegBuffer = (*cinfo.mem->alloc_sarray)
 		((j_common_ptr)&cinfo, JPOOL_IMAGE, row_stride, 1);
@@ -54,10 +48,7 @@ bool PictureManager::openPictureAndGetRGBVector(){
 	(void)jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
 
-	int* aaa = (int*)pTest;
-
 	std::cout << "Height: " << height << ", width: " << width << "\n";
-	//std::cout << pTest << "\n";
 
 	return true;
 }
