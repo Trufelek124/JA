@@ -48,9 +48,6 @@ bool PictureManager::openPictureAndGetRGBVector(){
 			rgb.push_back(r);
 			rgb.push_back(g);
 			rgb.push_back(b);
-			//rgb.push_back(255);
-			//rgb.push_back(0);
-			//rgb.push_back(0);
 		}
 	}
 	fclose(infile);
@@ -101,21 +98,10 @@ bool PictureManager::savePicture() {
 
 	unsigned char* bytes = new unsigned char[width * 3]; //tutaj wielkosc
 
-	int z = 0;
-
-	//for (int a = 0; a < rgb.size(); a += 3){
-	//	std::cout << int(a/3) << ") r: " << rgb.at(a) << ", g: " << rgb.at(a + 1) << ", b: " << rgb.at(a + 2) << "\n";
-	//	std::cout << "(" << rgb.at(a) << ", " << rgb.at(a + 1) << ", " << rgb.at(a + 2) << "); ";
-	//	if (a%width == 0){
-	//		z++;
-	//		std::cout << "\n" << z << "-------------------------------------------------------------" << "\n";
-	//	}
-
-	//}
 	int v = 0;
 
 	while (cinfo.next_scanline < cinfo.image_height) {
-		for (int i = 0; i < width; i += 3){
+		for (int i = 0; i < width*3; i += 3){
 			bytes[i] = static_cast<int>(rgb.at(v)) & 0xff;
 			bytes[i + 1] = static_cast<int>(rgb.at(v + 1)) & 0xff;
 			bytes[i + 2] = static_cast<int>(rgb.at(v + 2)) & 0xff;
