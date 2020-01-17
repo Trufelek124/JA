@@ -4,12 +4,13 @@
 PictureManager::PictureManager(){
 	filePath = "C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testoutt.jpg";
 	filePathOut = "C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testout.jpg";
+	useAsm = false;
 }
 
 PictureManager::~PictureManager(){}
 
 bool PictureManager::openPictureAndGetRGBVector(){
-
+	
 	if ((infile = fopen(filePath, "rb")) == NULL) {
 		fprintf(stderr, "can't open %s\n", filePath);
 		return false;
@@ -50,23 +51,51 @@ bool PictureManager::openPictureAndGetRGBVector(){
 
 	std::cout << "Height: " << height << ", width: " << width << "\n";
 
+
+
+
+
 	return true;
 }
 
-bool PictureManager::brightenImageCPP(){
-	std::vector<int> rgbAfterChange;
-	for (int i = 0; i < rgb.size(); i++){
-		float tmp = rgb.at(i) * 1.2;
-		if (tmp > 255){
-			tmp = 255;
-		}
-		if (tmp < 0){
-			tmp = 0;
-		}
-		rgbAfterChange.push_back((int)tmp);
+bool PictureManager::brightenImageFun(){
+	if (useAsm)
+	{
+		hGetProcIDDLL = LoadLibrary(TEXT("JADll.dll"));
 	}
+	else
+	{
+		hGetProcIDDLL = LoadLibrary(TEXT("JADllCpp.dll"));
+	}
+
+	if (!hGetProcIDDLL) {
+		return false;
+	}
+	function = (brightenImage)GetProcAddress(hGetProcIDDLL, "brightenImage");
+	if (!function) {
+		return false;
+	}
+	INT32 size = rgb.size();
+	int* in = new int[size];
+	int* out = new int[size];
+	//vector<int> result;
+
+	for (int i = 0; i < rgb.size(); i++){
+		in[i] = rgb.at(i);
+	}
+
+	int* res = function(size, in, out, 0.8); //usage of dll function
+
+	std::vector<int> rgbAfterChange;
+
+	
+	for (int i = 0; i < rgb.size(); i++){
+		rgbAfterChange.push_back(res[i]);
+	}
+
 	rgb = rgbAfterChange;
 	return true;
+
 }
 
 bool PictureManager::savePicture() {
@@ -101,7 +130,7 @@ bool PictureManager::savePicture() {
 
 	jpeg_start_compress(&cinfo, TRUE);
 
-	bytes = new unsigned char[width * 3]; //tutaj wielkosc
+	bytes = new unsigned char[width * 3]; //buffer size
 
 	int v = 0;
 

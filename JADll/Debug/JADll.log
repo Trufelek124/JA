@@ -1,17 +1,18 @@
-﻿Build started 2020-01-10 22:10:36.
-     1>Project "C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\JADll\JADll.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2020-01-17 12:06:51.
+     1>Project "C:\Users\User\documents\visual studio 2013\Projects\JAApp\JADll\JADll.vcxproj" on node 2 (Build target(s)).
      1>_MASM:
          Assembling mojadll.asm...
-         cmd.exe /C "C:\Users\admin\AppData\Local\Temp\tmp21a98570f7034c98a08c18383ff83620.cmd"
+         cmd.exe /C "C:\Users\User\AppData\Local\Temp\tmp25489b0af31c4fa897431f49b53b7de3.cmd"
          ml.exe /c /nologo /Zi /Fo"Debug\mojadll.obj" /W3 /errorReport:prompt  /Tamojadll.asm
      1>mojadll.asm(10): warning A6004: procedure argument or local not referenced : hInstDLL
      1>mojadll.asm(10): warning A6004: procedure argument or local not referenced : reason
      1>mojadll.asm(10): warning A6004: procedure argument or local not referenced : reserved1
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JADll.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"mojadll.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JADll.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JADll.lib" /MACHINE:X86 /DLL Debug\mojadll.obj
-         JADll.vcxproj -> C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\Debug\JADll.dll
-     1>Done Building Project "C:\Users\admin\Documents\Visual Studio 2013\Projects\JAApp\JADll\JADll.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JADll.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"mojadll.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JADll.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JADll.lib" /MACHINE:X86 /DLL Debug\mojadll.obj
+            Creating library C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JADll.lib and object C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JADll.exp
+         JADll.vcxproj -> C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JADll.dll
+     1>Done Building Project "C:\Users\User\documents\visual studio 2013\Projects\JAApp\JADll\JADll.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.59
+Time Elapsed 00:00:06.69

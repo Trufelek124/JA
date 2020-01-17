@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{531875FB-918C-42FA-B5C7-B594FE01616D}</ProjectGuid>
+    <ProjectGuid>{8A1916FD-F71F-44B8-A4F3-2DC048319D0D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>JADll</RootNamespace>
   </PropertyGroup>

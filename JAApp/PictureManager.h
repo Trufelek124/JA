@@ -8,7 +8,10 @@
 #include <jerror.h>
 #include <vector>
 #include <string.h>
+#include <sstream>
+#include <fstream>
 
+typedef int*(__cdecl *brightenImage)(INT32, int*, int*, float);
 
 class PictureManager
 {
@@ -17,23 +20,33 @@ public:
 	virtual ~PictureManager();
 
 	bool openPictureAndGetRGBVector();
-	bool brightenImageCPP();
+	bool brightenImageFun();
 	bool savePicture();
 
 protected:
 
 private:
-	std::vector<int> rgb; //rgb vector
-	unsigned char a, r, g, b;
-	int width, height;
-	struct jpeg_decompress_struct cinfo;
-	struct jpeg_error_mgr jerr;
-	const char * filePath;
-	const char * filePathOut;
-	unsigned char* bytes;
-	FILE * infile;        /* source file */
-	JSAMPARRAY pJpegBuffer;       /* Output row buffer */
-	int row_stride;       /* physical row width in output buffer */
+	//Program variables
+	const char * filePath; //file path to in file
+	const char * filePathOut; //file path to out file
+	bool useAsm; //usage of asm/c++ dll
+
+	//Picture variables
+	std::vector<int> rgb; //rgb vector for pictore
+	unsigned char a, r, g, b; //alpha, red, green and blue values to read from file
+	int width, height; //width and height od file
+
+	//Picture read.write variables
+	FILE * infile;        //source file
+	struct jpeg_decompress_struct cinfo; //variable for reading file
+	struct jpeg_error_mgr jerr; //error variable if any occures
+	unsigned char* bytes; //bytes array to write file
+	JSAMPARRAY pJpegBuffer; //output row buffer
+	int row_stride;       //physical row width in output buffer 
+
+	//Dll variables
+	HINSTANCE hGetProcIDDLL; //dynamic loading of library
+	brightenImage function; //dll function
 };
 
 #endif // PICTUREMANAGER_H
