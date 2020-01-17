@@ -1,0 +1,20 @@
+﻿Build started 2020-01-17 20:25:28.
+     1>Project "c:\Users\User\documents\visual studio 2012\Projects\JAImageBrightening\JAImageBrigteningDllAsm\JAImageBrigteningDllAsm.vcxproj" on node 2 (Build target(s)).
+     1>_MASM:
+         Assembling JAImageBrighteningDllAsm.asm...
+         cmd.exe /C "C:\Users\User\AppData\Local\Temp\tmpf6bdedd909884090b6d91dec76a77152.cmd"
+         ml.exe /c /nologo /Zi /Fo"Debug\JAImageBrighteningDllAsm.obj" /W3 /errorReport:prompt  /TaJAImageBrighteningDllAsm.asm
+     1>JAImageBrighteningDllAsm.asm(14): warning A6004: procedure argument or local not referenced : hInstDLL
+     1>JAImageBrighteningDllAsm.asm(14): warning A6004: procedure argument or local not referenced : reason
+     1>JAImageBrighteningDllAsm.asm(14): warning A6004: procedure argument or local not referenced : reserved1
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\user\documents\visual studio 2012\Projects\JAImageBrightening\Debug\JAImageBrigteningDllAsm.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /DEF:"JAImageBrighteningDllAsm.def" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"c:\users\user\documents\visual studio 2012\Projects\JAImageBrightening\Debug\JAImageBrigteningDllAsm.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\user\documents\visual studio 2012\Projects\JAImageBrightening\Debug\JAImageBrigteningDllAsm.lib" /MACHINE:X86 /DLL Debug\JAImageBrighteningDllAsm.obj
+            Creating library c:\users\user\documents\visual studio 2012\Projects\JAImageBrightening\Debug\JAImageBrigteningDllAsm.lib and object c:\users\user\documents\visual studio 2012\Projects\JAImageBrightening\Debug\JAImageBrigteningDllAsm.exp
+     1>JAImageBrigteningDllAsm.exp : warning LNK4070: /OUT:JAImageBrighteningDllAsm.dll directive in .EXP differs from output filename 'c:\users\user\documents\visual studio 2012\Projects\JAImageBrightening\Debug\JAImageBrigteningDllAsm.dll'; ignoring directive
+     1>c:\users\user\documents\visual studio 2012\Projects\JAImageBrightening\Debug\JAImageBrigteningDllAsm.dll : warning LNK4086: entrypoint '_DllEntry' is not __stdcall with 12 bytes of arguments; image may not run
+         JAImageBrigteningDllAsm.vcxproj -> c:\users\user\documents\visual studio 2012\Projects\JAImageBrightening\Debug\JAImageBrigteningDllAsm.dll
+     1>Done Building Project "c:\Users\User\documents\visual studio 2012\Projects\JAImageBrightening\JAImageBrigteningDllAsm\JAImageBrigteningDllAsm.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.45
