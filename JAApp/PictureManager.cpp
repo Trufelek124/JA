@@ -59,7 +59,7 @@ bool PictureManager::openPictureAndGetRGBVector(){
 }
 
 bool PictureManager::brightenImageFun(){
-	if (useAsm)
+	if (!useAsm)
 	{
 		hGetProcIDDLL = LoadLibrary(TEXT("JADll.dll"));
 	}
@@ -78,18 +78,16 @@ bool PictureManager::brightenImageFun(){
 	INT32 size = rgb.size();
 	int* in = new int[size];
 	int* out = new int[size];
-	//vector<int> result;
+	std::vector<int> rgbAfterChange;
 
 	for (int i = 0; i < rgb.size(); i++){
 		in[i] = rgb.at(i);
 	}
 
-	int* res = function(size, in, out, 0.8); //usage of dll function
-
-	std::vector<int> rgbAfterChange;
+	int* res = function(size, in, out, 1.2); //usage of dll function
 
 	
-	for (int i = 0; i < rgb.size(); i++){
+	for (int i = 0; i < size; i++){
 		rgbAfterChange.push_back(res[i]);
 	}
 

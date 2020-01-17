@@ -1,6 +1,9 @@
-﻿Build started 2020-01-17 12:06:58.
+﻿Build started 2020-01-17 13:44:53.
      1>Project "C:\Users\User\documents\visual studio 2013\Projects\JAApp\JAApp\JAApp.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W0 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\JAApp.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PictureManager.cpp
+         PictureManager.cpp
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JAApp.exe" /INCREMENTAL /NOLOGO "C:\Users\User\Documents\Visual Studio 2013\Projects\JAApp\Debug\JADll.lib" "C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JADllCpp.lib" "C:\Users\User\Documents\libjpeg\jpeg-9b\Release\jpeg.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JAApp.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\documents\visual studio 2013\Projects\JAApp\Debug\JAApp.lib" /MACHINE:X86 Debug\JAApp.obj
          Debug\PictureManager.obj
          Debug\stdafx.obj
@@ -15,4 +18,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:20.06
+Time Elapsed 00:00:05.30
