@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "PictureManager.h"
 
-PictureManager::PictureManager(char * filePathVar, char * filePathOutVar, bool asmUse, float multipilerVar){
+PictureManager::PictureManager(char * filePathVar, char * filePathOutVar, bool asmUse, float multipilerVar, int threadCountVar){
 	filePath = filePathVar; //"C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testoutt.jpg";
 	filePathOut = filePathOutVar; //"C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testout.jpg";
 	useAsm = asmUse;
 	multipiler = multipilerVar;
+	threadCount = threadCountVar;
 }
 
 PictureManager::~PictureManager(){}
@@ -14,7 +15,7 @@ bool PictureManager::openPictureAndGetRGBVector(){
 	
 	if ((infile = fopen(filePath, "rb")) == NULL) {
 		fprintf(stderr, "can't open %s\n", filePath);
-		std::cout << filePath << "\n";
+		cout << filePath << "\n";
 		return false;
 	}
 	cinfo.err = jpeg_std_error(&jerr);
@@ -51,7 +52,7 @@ bool PictureManager::openPictureAndGetRGBVector(){
 	(void)jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
 
-	std::cout << "Height: " << height << ", width: " << width << "\n";
+	cout << "Height: " << height << ", width: " << width << "\n";
 	return true;
 }
 
@@ -75,7 +76,7 @@ bool PictureManager::brightenImageFun(){
 	INT32 size = rgb.size();
 	int* in = new int[size];
 	int* out = new int[size];
-	std::vector<int> rgbAfterChange;
+	vector<int> rgbAfterChange;
 
 	for (int i = 0; i < rgb.size(); i++){
 		in[i] = rgb.at(i);
@@ -144,7 +145,7 @@ bool PictureManager::savePicture() {
 	fclose(outfile);
 	jpeg_destroy_compress(&cinfo);
 
-	std::cout << "\n" << "Done" << std::endl;
+	cout << "\n" << "Done" << endl;
 
 	return true;
 }

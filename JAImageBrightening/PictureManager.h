@@ -10,13 +10,15 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <thread>
 
 typedef int*(__cdecl *brightenImage)(INT32, int*, int*, float);
 
+using namespace std;
 class PictureManager
 {
 public:
-	PictureManager(char * filePathVar, char * filePathOutVar, bool asmUse, float multipilerVar);
+	PictureManager(char * filePathVar, char * filePathOutVar, bool asmUse, float multipilerVar, int threadCountVar);
 	virtual ~PictureManager();
 
 	bool openPictureAndGetRGBVector();
@@ -31,6 +33,7 @@ private:
 	const char * filePathOut; //file path to out file
 	bool useAsm; //usage of asm/c++ dll
 	float multipiler;
+	int threadCount;
 
 	//Picture variables
 	std::vector<int> rgb; //rgb vector for pictore

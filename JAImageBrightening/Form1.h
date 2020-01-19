@@ -252,7 +252,7 @@ namespace JAImageBrightening {
 			char *outputDUC=new char[outputD.length()+1];
 			strcpy((char *)outputDUC,outputD.c_str());
 
-			PictureManager* pManager = new PictureManager(inputDUC, outputDUC, radioASM->Checked, mul);
+			PictureManager* pManager = new PictureManager(inputDUC, outputDUC, radioASM->Checked, mul, (int)threadCount->Value);
 	
 			//runButton->Text = L"Working...";
 
