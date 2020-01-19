@@ -2,12 +2,6 @@ CImg-master/
 CImg/
 ipch/
 jpeg-9b/
-JAImageBrightening.sdf
-JAImageBrightening.sln
-JAImageBrightening.v12.suo
-.vcxproj
-.vcxproj.filters
-.obj
 JAImageBrightening/Debug/JAApp.tlog/
 JAImageBrightening/Debug/link.
 JAImageBrighteningDllAsm/Debug/JADll.tlog/
