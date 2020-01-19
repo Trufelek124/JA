@@ -40,7 +40,7 @@ namespace JAImageBrightening {
 			}
 		}
 	private: System::Windows::Forms::TextBox^  inputDir;
-	protected:
+	protected: 
 	private: System::Windows::Forms::Label^  inputDirLabel;
 	private: System::Windows::Forms::Label^  outputDirLabel;
 	private: System::Windows::Forms::TextBox^  outputDir;
@@ -52,8 +52,6 @@ namespace JAImageBrightening {
 	private: System::Windows::Forms::Button^  runButton;
 	private: System::Windows::Forms::NumericUpDown^  threadCount;
 	private: System::Windows::Forms::Label^  threadCountLabel;
-	private: System::Windows::Forms::Label^  timeLabel;
-	private: System::Windows::Forms::TextBox^  timeTextBox;
 
 	private:
 		/// <summary>
@@ -80,9 +78,7 @@ namespace JAImageBrightening {
 			this->runButton = (gcnew System::Windows::Forms::Button());
 			this->threadCount = (gcnew System::Windows::Forms::NumericUpDown());
 			this->threadCountLabel = (gcnew System::Windows::Forms::Label());
-			this->timeLabel = (gcnew System::Windows::Forms::Label());
-			this->timeTextBox = (gcnew System::Windows::Forms::TextBox());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->threadCount))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->threadCount))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// inputDir
@@ -119,13 +115,13 @@ namespace JAImageBrightening {
 			this->outputDir->Name = L"outputDir";
 			this->outputDir->Size = System::Drawing::Size(318, 20);
 			this->outputDir->TabIndex = 2;
-			this->outputDir->Text = L"C:\\\\Users\\\\User\\\\Documents\\\\studia\\\\ja\\\\jpeg-build\\\\jpeg-6b\\\\testout.jpg";
 			this->outputDir->TextChanged += gcnew System::EventHandler(this, &Form1::outputDir_TextChanged);
+			this->outputDir->Text = L"C:\\\\Users\\\\User\\\\Documents\\\\studia\\\\ja\\\\jpeg-build\\\\jpeg-6b\\\\testout.jpg";
 			// 
 			// radioASM
 			// 
 			this->radioASM->AutoSize = true;
-			this->radioASM->Location = System::Drawing::Point(29, 196);
+			this->radioASM->Location = System::Drawing::Point(29, 169);
 			this->radioASM->Name = L"radioASM";
 			this->radioASM->Size = System::Drawing::Size(48, 17);
 			this->radioASM->TabIndex = 4;
@@ -137,7 +133,7 @@ namespace JAImageBrightening {
 			// radioCPP
 			// 
 			this->radioCPP->AutoSize = true;
-			this->radioCPP->Location = System::Drawing::Point(29, 220);
+			this->radioCPP->Location = System::Drawing::Point(29, 193);
 			this->radioCPP->Name = L"radioCPP";
 			this->radioCPP->Size = System::Drawing::Size(44, 17);
 			this->radioCPP->TabIndex = 5;
@@ -148,7 +144,7 @@ namespace JAImageBrightening {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(3, 166);
+			this->label3->Location = System::Drawing::Point(3, 139);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(50, 13);
 			this->label3->TabIndex = 6;
@@ -169,12 +165,12 @@ namespace JAImageBrightening {
 			// 
 			this->multiplier->Location = System::Drawing::Point(91, 96);
 			this->multiplier->Name = L"multiplier";
-			this->multiplier->Size = System::Drawing::Size(97, 20);
+			this->multiplier->Size = System::Drawing::Size(75, 20);
 			this->multiplier->TabIndex = 8;
 			// 
 			// runButton
 			// 
-			this->runButton->Location = System::Drawing::Point(29, 272);
+			this->runButton->Location = System::Drawing::Point(29, 248);
 			this->runButton->Name = L"runButton";
 			this->runButton->Size = System::Drawing::Size(358, 79);
 			this->runButton->TabIndex = 9;
@@ -184,51 +180,26 @@ namespace JAImageBrightening {
 			// 
 			// threadCount
 			// 
-			this->threadCount->Location = System::Drawing::Point(317, 97);
-			this->threadCount->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 64, 0, 0, 0 });
-			this->threadCount->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->threadCount->Location = System::Drawing::Point(305, 97);
 			this->threadCount->Name = L"threadCount";
-			this->threadCount->Size = System::Drawing::Size(92, 20);
+			this->threadCount->Size = System::Drawing::Size(104, 20);
 			this->threadCount->TabIndex = 10;
-			this->threadCount->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
 			// threadCountLabel
 			// 
 			this->threadCountLabel->AutoSize = true;
-			this->threadCountLabel->Location = System::Drawing::Point(219, 99);
+			this->threadCountLabel->Location = System::Drawing::Point(206, 99);
 			this->threadCountLabel->Name = L"threadCountLabel";
 			this->threadCountLabel->Size = System::Drawing::Size(71, 13);
 			this->threadCountLabel->TabIndex = 11;
 			this->threadCountLabel->Text = L"Thread count";
 			this->threadCountLabel->Click += gcnew System::EventHandler(this, &Form1::threadCountLabel_Click);
 			// 
-			// timeLabel
-			// 
-			this->timeLabel->AutoSize = true;
-			this->timeLabel->Location = System::Drawing::Point(3, 132);
-			this->timeLabel->Name = L"timeLabel";
-			this->timeLabel->Size = System::Drawing::Size(30, 13);
-			this->timeLabel->TabIndex = 12;
-			this->timeLabel->Text = L"Time";
-			this->timeLabel->Click += gcnew System::EventHandler(this, &Form1::timeLabel_Click);
-			// 
-			// timeTextBox
-			// 
-			this->timeTextBox->Location = System::Drawing::Point(91, 129);
-			this->timeTextBox->Name = L"timeTextBox";
-			this->timeTextBox->ReadOnly = true;
-			this->timeTextBox->Size = System::Drawing::Size(318, 20);
-			this->timeTextBox->TabIndex = 13;
-			this->timeTextBox->Text = L"0";
-			this->timeTextBox->TextChanged += gcnew System::EventHandler(this, &Form1::timeTextBox_TextChanged);
-			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(421, 379);
-			this->Controls->Add(this->timeTextBox);
-			this->Controls->Add(this->timeLabel);
 			this->Controls->Add(this->threadCountLabel);
 			this->Controls->Add(this->threadCount);
 			this->Controls->Add(this->runButton);
@@ -244,76 +215,65 @@ namespace JAImageBrightening {
 			this->Name = L"Form1";
 			this->Text = L"JAImageBrightening";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->threadCount))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->threadCount))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
-	}
+			 }
 	private: System::Void inputDirLabel_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
+			 }
 	private: System::Void outputDirLabel_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
+			 }
 	private: System::Void outputDir_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
+			 }
 	private: System::Void radioASM_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	}
+			 }
 	private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
+			 }
 	private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
+			 }
 	private: System::Void threadCountLabel_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
-	private: System::Void timeLabel_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
-private: System::Void timeTextBox_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-}
+			 }
 	private: System::Void runButton_Click(System::Object^  sender, System::EventArgs^  e) {
-		//tutaj program
-		std::string num = msclr::interop::marshal_as<std::string>(multiplier->Text);
-		std::string mulS = replaceChar(num, ',', '.');
-		double mul = (double)std::stof(mulS);
+			 //tutaj program
+				 
+			runButton->Text = L"Working...";
+			std::string num = msclr::interop::marshal_as<std::string>(multiplier->Text);
+			std::string mulS = replaceChar(num, ',', '.');
+			double mul = (double) std::stof(mulS);
 
-		std::string imputD = msclr::interop::marshal_as<std::string>(inputDir->Text);
-		char *inputDUC = new char[imputD.length() + 1];
-		strcpy((char *)inputDUC, imputD.c_str());
+			std::string imputD = msclr::interop::marshal_as<std::string>(inputDir->Text);
+			char *inputDUC=new char[imputD.length()+1];
+			strcpy((char *)inputDUC,imputD.c_str());
+			
+			std::string outputD = msclr::interop::marshal_as<std::string>(outputDir->Text);
+			char *outputDUC=new char[outputD.length()+1];
+			strcpy((char *)outputDUC,outputD.c_str());
 
-		std::string outputD = msclr::interop::marshal_as<std::string>(outputDir->Text);
-		char *outputDUC = new char[outputD.length() + 1];
-		strcpy((char *)outputDUC, outputD.c_str());
+			PictureManager* pManager = new PictureManager(inputDUC, outputDUC, radioASM->Checked, mul);
+	
 
-		PictureManager* pManager = new PictureManager(inputDUC, outputDUC, radioASM->Checked, mul, (int)threadCount->Value);
-
-		runButton->Text = L"Working...";
-		bool setup = pManager->setup();
-		if (setup){
 			bool opening = pManager->openPictureAndGetRGBVector();
-			if (opening){
+			if(opening){
 				bool brightening = pManager->brightenImageFun();
-				if (brightening){
-					bool saving = pManager->savePicture();
+					if(brightening){
+						bool saving = pManager->savePicture();
 
-					if (!saving){
+						if(!saving){
+							runButton->Text = L"Error saving!";
+						} else {
+							runButton->Text = L"Done!";
+						}
+					} else {
 						runButton->Text = L"Error saving!";
 					}
-					else {
-						runButton->Text = L"Done!";
-					}
-				}
-				else {
-					runButton->Text = L"Error saving!";
-				}
-			}
-			else {
+			} else {
 				runButton->Text = L"Error opening!";
 			}
-		}
-		else {
-			runButton->Text = L"Error setup!";
-		}
-	}
+		 }
 
 	private: std::string replaceChar(std::string str, char ch1, char ch2) {
 	  for (int i = 0; i < str.length(); ++i) {
@@ -323,7 +283,7 @@ private: System::Void timeTextBox_TextChanged(System::Object^  sender, System::E
 
 	  return str;
 	}
-};
+	};
 }
 
 

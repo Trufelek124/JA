@@ -11,4 +11,4 @@
 #endif
 
 
-extern "C" JAIMAGEBRIGHTENINGDLLCPP_API int* __cdecl brightenImage(INT32 length, int* in, int* out, float mutiplier);
+extern "C" JAIMAGEBRIGHTENINGDLLCPP_API void __cdecl brightenImage(INT32 length, double* in, double* out, double mutiplier);

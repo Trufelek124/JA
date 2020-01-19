@@ -1,46 +1,20 @@
 #include "stdafx.h"
 #include "PictureManager.h"
-#include <process.h>
-#include <mutex>
 
-PictureManager::PictureManager(char * filePathVar, char * filePathOutVar, bool asmUse, float multipilerVar, int threadCountVar){
+PictureManager::PictureManager(char * filePathVar, char * filePathOutVar, bool asmUse, float multipilerVar){
 	filePath = filePathVar; //"C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testoutt.jpg";
 	filePathOut = filePathOutVar; //"C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testout.jpg";
 	useAsm = asmUse;
 	multipiler = multipilerVar;
-	threadCount = threadCountVar;
-	current = 0;
 }
 
 PictureManager::~PictureManager(){}
-
-
-bool PictureManager::setup(){
-	if (useAsm)
-	{
-		hGetProcIDDLL = LoadLibrary(TEXT("JAImageBrighteningDllAsm.dll"));
-	}
-	else
-	{
-		hGetProcIDDLL = LoadLibrary(TEXT("JAImageBrighteningDllCpp.dll"));
-	}
-
-	if (!hGetProcIDDLL) {
-		return false;
-	}
-	function = (brightenImage)GetProcAddress(hGetProcIDDLL, "brightenImage");
-	if (!function) {
-		return false;
-	}
-
-	return true;
-}
 
 bool PictureManager::openPictureAndGetRGBVector(){
 	
 	if ((infile = fopen(filePath, "rb")) == NULL) {
 		fprintf(stderr, "can't open %s\n", filePath);
-		cout << filePath << "\n";
+		std::cout << filePath << "\n";
 		return false;
 	}
 	cinfo.err = jpeg_std_error(&jerr);
@@ -73,50 +47,60 @@ bool PictureManager::openPictureAndGetRGBVector(){
 			rgb.push_back(b);
 		}
 	}
+
+	
+	temp = new Picture();
+	temp->height = height;
+	temp->width = width;
+	temp->size = rgb.size();
+
+
+
+	INT32 size = rgb.size();
+	double* in = new double[size];
+	double* out = new double[size];
+
+	for (int i = 0; i < rgb.size(); i++){
+		in[i] = (double)rgb.at(i);
+	}
+
+	temp->inArray = in;
+	temp->outArray = out;
+
 	fclose(infile);
 	(void)jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
 
-	cout << "Height: " << height << ", width: " << width << "\n";
+	std::cout << "Height: " << height << ", width: " << width << "\n";
 	return true;
 }
 
-bool PictureManager::threads(){ // na razie nieu¿ywana, ale bêdzie zamiast brightenImageFun()
-	thread** threads = new thread*[threadCount];
-
-	threadParam* params = (threadParam*)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY,
-		sizeof(threadParam));
-	if (params == NULL)
-		return false;
-
-	params->pMutex = (HANDLE*)(new mutex());
-	params->current = &current;
-	params->inArray = &rgb;
-	params->function = function;
-
-	for (int i = 0; i < threadCount; i++)
-	{
-		threads[i] = new thread(brightenImageFun, params); //TO DO threadFunction
-
-		SetThreadPriority(threads[i]->native_handle(), THREAD_PRIORITY_HIGHEST);
-	}
-}
-
 bool PictureManager::brightenImageFun(){
-	INT32 size = rgb.size();
-	int* in = new int[size];
-	int* out = new int[size];
-	vector<int> rgbAfterChange;
-
-	for (int i = 0; i < rgb.size(); i++){
-		in[i] = rgb.at(i);
+	if (useAsm)
+	{
+		hGetProcIDDLL = LoadLibrary(TEXT("JAImageBrighteningDllAsm.dll"));
+	}
+	else
+	{
+		hGetProcIDDLL = LoadLibrary(TEXT("JAImageBrighteningDllCpp.dll"));
 	}
 
-	int* res = function(size, in, out, multipiler); //usage of dll function
-
+	if (!hGetProcIDDLL) {
+		return false;
+	}
+	function = (brightenImage)GetProcAddress(hGetProcIDDLL, "brightenImage");
+	if (!function) {
+		return false;
+	}
 	
-	for (int i = 0; i < size; i++){
-		rgbAfterChange.push_back(res[i]);
+	std::vector<int> rgbAfterChange;
+	std::cout << "jestem\n";
+	function(temp->size, temp->inArray, temp->outArray, (double)multipiler); //usage of dll function
+	
+	std::cout << "jestem\n";
+	
+	for (int i = 0; i < temp->size; i++){
+		rgbAfterChange.push_back(temp->outArray[i]);
 	}
 
 	rgb = rgbAfterChange;
@@ -175,7 +159,7 @@ bool PictureManager::savePicture() {
 	fclose(outfile);
 	jpeg_destroy_compress(&cinfo);
 
-	cout << "\n" << "Done" << endl;
+	std::cout << "\n" << "Done" << std::endl;
 
 	return true;
 }

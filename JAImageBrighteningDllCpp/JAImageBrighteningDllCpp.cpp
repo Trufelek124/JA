@@ -3,10 +3,10 @@
 #include "stdafx.h"
 #include "JAImageBrighteningDllCpp.h"
 
-JAIMAGEBRIGHTENINGDLLCPP_API int*  __cdecl brightenImage(INT32 length, int* in, int* out, float mutiplier)
+JAIMAGEBRIGHTENINGDLLCPP_API void  __cdecl brightenImage(INT32 length, double* in, double* out, double mutiplier)
 {
 	*out = 0;
-	int temp = 0;
+	double temp = 0;
 	for (int i = 0; i <  length - 1; i++)
 	{
 		temp = in[i] * mutiplier;
@@ -18,5 +18,4 @@ JAIMAGEBRIGHTENINGDLLCPP_API int*  __cdecl brightenImage(INT32 length, int* in, 
 		}
 		out[i] = temp;
 	}
-	return out;
 }
