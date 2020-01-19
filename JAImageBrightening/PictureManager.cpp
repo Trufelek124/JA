@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "PictureManager.h"
+#include <process.h>
+#include <mutex>
 
 PictureManager::PictureManager(char * filePathVar, char * filePathOutVar, bool asmUse, float multipilerVar, int threadCountVar){
 	filePath = filePathVar; //"C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testoutt.jpg";
@@ -7,9 +9,32 @@ PictureManager::PictureManager(char * filePathVar, char * filePathOutVar, bool a
 	useAsm = asmUse;
 	multipiler = multipilerVar;
 	threadCount = threadCountVar;
+	current = 0;
 }
 
 PictureManager::~PictureManager(){}
+
+
+bool PictureManager::setup(){
+	if (useAsm)
+	{
+		hGetProcIDDLL = LoadLibrary(TEXT("JAImageBrighteningDllAsm.dll"));
+	}
+	else
+	{
+		hGetProcIDDLL = LoadLibrary(TEXT("JAImageBrighteningDllCpp.dll"));
+	}
+
+	if (!hGetProcIDDLL) {
+		return false;
+	}
+	function = (brightenImage)GetProcAddress(hGetProcIDDLL, "brightenImage");
+	if (!function) {
+		return false;
+	}
+
+	return true;
+}
 
 bool PictureManager::openPictureAndGetRGBVector(){
 	
@@ -56,23 +81,28 @@ bool PictureManager::openPictureAndGetRGBVector(){
 	return true;
 }
 
-bool PictureManager::brightenImageFun(){
-	if (useAsm)
-	{
-		hGetProcIDDLL = LoadLibrary(TEXT("JAImageBrighteningDllAsm.dll"));
-	}
-	else
-	{
-		hGetProcIDDLL = LoadLibrary(TEXT("JAImageBrighteningDllCpp.dll"));
-	}
+bool PictureManager::threads(){ // na razie nieu¿ywana, ale bêdzie zamiast brightenImageFun()
+	thread** threads = new thread*[threadCount];
 
-	if (!hGetProcIDDLL) {
+	threadParam* params = (threadParam*)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY,
+		sizeof(threadParam));
+	if (params == NULL)
 		return false;
+
+	params->pMutex = (HANDLE*)(new mutex());
+	params->current = &current;
+	params->inArray = &rgb;
+	params->function = function;
+
+	for (int i = 0; i < threadCount; i++)
+	{
+		threads[i] = new thread(brightenImageFun, params); //TO DO threadFunction
+
+		SetThreadPriority(threads[i]->native_handle(), THREAD_PRIORITY_HIGHEST);
 	}
-	function = (brightenImage)GetProcAddress(hGetProcIDDLL, "brightenImage");
-	if (!function) {
-		return false;
-	}
+}
+
+bool PictureManager::brightenImageFun(){
 	INT32 size = rgb.size();
 	int* in = new int[size];
 	int* out = new int[size];

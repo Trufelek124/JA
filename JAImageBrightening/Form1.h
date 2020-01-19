@@ -40,7 +40,7 @@ namespace JAImageBrightening {
 			}
 		}
 	private: System::Windows::Forms::TextBox^  inputDir;
-	protected: 
+	protected:
 	private: System::Windows::Forms::Label^  inputDirLabel;
 	private: System::Windows::Forms::Label^  outputDirLabel;
 	private: System::Windows::Forms::TextBox^  outputDir;
@@ -78,7 +78,7 @@ namespace JAImageBrightening {
 			this->runButton = (gcnew System::Windows::Forms::Button());
 			this->threadCount = (gcnew System::Windows::Forms::NumericUpDown());
 			this->threadCountLabel = (gcnew System::Windows::Forms::Label());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->threadCount))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->threadCount))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// inputDir
@@ -215,65 +215,72 @@ namespace JAImageBrightening {
 			this->Name = L"Form1";
 			this->Text = L"JAImageBrightening";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->threadCount))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->threadCount))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	}
 	private: System::Void inputDirLabel_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	}
 	private: System::Void outputDirLabel_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	}
 	private: System::Void outputDir_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	}
 	private: System::Void radioASM_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	}
 	private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	}
 	private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	}
 	private: System::Void threadCountLabel_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
+	}
 	private: System::Void runButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 //tutaj program
+		//tutaj program
+		std::string num = msclr::interop::marshal_as<std::string>(multiplier->Text);
+		std::string mulS = replaceChar(num, ',', '.');
+		double mul = (double)std::stof(mulS);
 
-			std::string num = msclr::interop::marshal_as<std::string>(multiplier->Text);
-			std::string mulS = replaceChar(num, ',', '.');
-			double mul = (double) std::stof(mulS);
+		std::string imputD = msclr::interop::marshal_as<std::string>(inputDir->Text);
+		char *inputDUC = new char[imputD.length() + 1];
+		strcpy((char *)inputDUC, imputD.c_str());
 
-			std::string imputD = msclr::interop::marshal_as<std::string>(inputDir->Text);
-			char *inputDUC=new char[imputD.length()+1];
-			strcpy((char *)inputDUC,imputD.c_str());
-			
-			std::string outputD = msclr::interop::marshal_as<std::string>(outputDir->Text);
-			char *outputDUC=new char[outputD.length()+1];
-			strcpy((char *)outputDUC,outputD.c_str());
+		std::string outputD = msclr::interop::marshal_as<std::string>(outputDir->Text);
+		char *outputDUC = new char[outputD.length() + 1];
+		strcpy((char *)outputDUC, outputD.c_str());
 
-			PictureManager* pManager = new PictureManager(inputDUC, outputDUC, radioASM->Checked, mul, (int)threadCount->Value);
-	
-			//runButton->Text = L"Working...";
+		PictureManager* pManager = new PictureManager(inputDUC, outputDUC, radioASM->Checked, mul, (int)threadCount->Value);
 
+		runButton->Text = L"Working...";
+		bool setup = pManager->setup();
+		if (setup){
 			bool opening = pManager->openPictureAndGetRGBVector();
-			if(opening){
+			if (opening){
 				bool brightening = pManager->brightenImageFun();
-					if(brightening){
-						bool saving = pManager->savePicture();
+				if (brightening){
+					bool saving = pManager->savePicture();
 
-						if(!saving){
-							runButton->Text = L"Error saving!";
-						} else {
-							runButton->Text = L"Done!";
-						}
-					} else {
+					if (!saving){
 						runButton->Text = L"Error saving!";
 					}
-			} else {
+					else {
+						runButton->Text = L"Done!";
+					}
+				}
+				else {
+					runButton->Text = L"Error saving!";
+				}
+			}
+			else {
 				runButton->Text = L"Error opening!";
 			}
-		 }
+		}
+		else {
+			runButton->Text = L"Error setup!";
+		}
+	}
 
 	private: std::string replaceChar(std::string str, char ch1, char ch2) {
 	  for (int i = 0; i < str.length(); ++i) {

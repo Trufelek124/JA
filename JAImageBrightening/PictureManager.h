@@ -15,13 +15,24 @@
 typedef int*(__cdecl *brightenImage)(INT32, int*, int*, float);
 
 using namespace std;
+
+struct threadParam
+{
+	int* current;
+	vector<int>* inArray;
+	HANDLE* pMutex;
+	brightenImage function;
+};
+
 class PictureManager
 {
 public:
 	PictureManager(char * filePathVar, char * filePathOutVar, bool asmUse, float multipilerVar, int threadCountVar);
 	virtual ~PictureManager();
 
+	bool setup();
 	bool openPictureAndGetRGBVector();
+	bool threads();
 	bool brightenImageFun();
 	bool savePicture();
 
@@ -34,6 +45,7 @@ private:
 	bool useAsm; //usage of asm/c++ dll
 	float multipiler;
 	int threadCount;
+	int current;
 
 	//Picture variables
 	std::vector<int> rgb; //rgb vector for pictore
