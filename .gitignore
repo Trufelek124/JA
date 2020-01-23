@@ -1,3 +1,7 @@
 stare/
 ipch/
 jpeg-9b/
+.vcxproj
+.vcxproj.filters
+.vcxproj.user
+.sln
