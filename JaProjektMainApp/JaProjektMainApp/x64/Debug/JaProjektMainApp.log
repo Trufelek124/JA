@@ -1,3 +1,11 @@
-﻿  Source.cpp
-     Trwa tworzenie biblioteki C:\Users\admin\Documents\ja\JaProjektMainApp\x64\Debug\JaProjektMainApp.lib i obiektu C:\Users\admin\Documents\ja\JaProjektMainApp\x64\Debug\JaProjektMainApp.exp
-  JaProjektMainApp.vcxproj -> C:\Users\admin\Documents\ja\JaProjektMainApp\x64\Debug\JaProjektMainApp.exe
+﻿  PictureManager.cpp
+C:\Users\admin\Documents\ja\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(42,44): warning C4244: "argument": konwersja z "double" do "const _Ty", możliwa utrata danych
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\admin\Documents\ja\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(58,6): warning C4101: "row": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\admin\Documents\ja\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(60,11): warning C4101: "image_buffer": lokalna zmienna, do której nie istnieje odwołanie
+  Source.cpp
+  Generowanie kodu...
+LINK : fatal error LNK1104: nie można otworzyć pliku „JaProjektDllAsm.def”
