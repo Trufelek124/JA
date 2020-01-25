@@ -3,8 +3,6 @@
 
 #include <windows.h>
 #include <iostream>
-#include <jpeglib.h>    
-#include <jerror.h>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -26,9 +24,9 @@ class PictureManager
 {
 public:
 	PictureManager(char* filePathVar, char* filePathOutVar, bool asmUse, float multipilerVar);
+	PictureManager();
 	virtual ~PictureManager();
-
-	bool openPictureAndGetRGBVector();
+	bool openPictureAndGetByteArray();
 	bool brightenImageFun();
 	bool savePicture();
 
@@ -41,19 +39,22 @@ private:
 	bool useAsm; //usage of asm/c++ dll
 	float multipiler;
 	Picture* temp;
+	unsigned char* image; 
+	char* imageSign;
+	unsigned int* buffer;
 
 	//Picture variables
 	std::vector<int> rgb; //rgb vector for pictore
+	std::vector<int> rgb2; //rgb vector for pictore
 	unsigned char a, r, g, b; //alpha, red, green and blue values to read from file
 	int width, height; //width and height od file
+	const int bytesPerPixel = 4; /// red, green, blue
+	const int fileHeaderSize = 14;
+	const int infoHeaderSize = 40;
 
 	//Picture read.write variables
 	FILE* infile;        //source file
-	struct jpeg_decompress_struct cinfo; //variable for reading file
-	struct jpeg_error_mgr jerr; //error variable if any occures
 	unsigned char* bytes; //bytes array to write file
-	JSAMPARRAY pJpegBuffer; //output row buffer
-	int row_stride;       //physical row width in output buffer 
 
 	//Dll variables
 	HINSTANCE hGetProcIDDLL; //dynamic loading of library

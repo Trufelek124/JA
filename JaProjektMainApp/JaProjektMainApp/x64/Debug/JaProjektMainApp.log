@@ -1,11 +1,8 @@
 ﻿  PictureManager.cpp
-C:\Users\admin\Documents\ja\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(42,44): warning C4244: "argument": konwersja z "double" do "const _Ty", możliwa utrata danych
-          with
-          [
-              _Ty=int
-          ]
-C:\Users\admin\Documents\ja\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(58,6): warning C4101: "row": lokalna zmienna, do której nie istnieje odwołanie
-C:\Users\admin\Documents\ja\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(60,11): warning C4101: "image_buffer": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(26,18): warning C4305: "=": obcięcie z "double" do "float"
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(68,39): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(54,17): warning C4101: "tmp": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(34,7): warning C4101: "i": lokalna zmienna, do której nie istnieje odwołanie
   Source.cpp
   Generowanie kodu...
-LINK : fatal error LNK1104: nie można otworzyć pliku „JaProjektDllAsm.def”
+  JaProjektMainApp.vcxproj -> C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektMainApp.exe
