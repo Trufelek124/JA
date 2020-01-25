@@ -20,10 +20,10 @@ PictureManager::PictureManager(char* filePathVar, char* filePathOutVar, bool asm
 }
 
 PictureManager::PictureManager() {
-	filePath = "C:\\BMP\\RGB3.bmp";
+	filePath = "C:\\BMP\\RGB4.bmp";
 	filePathOut = "img.bmp";
 	useAsm = false;
-	multipiler = 1.2;
+	multipiler = 1.2f;
 }
 
 PictureManager::~PictureManager() {}
@@ -58,17 +58,17 @@ bool PictureManager::openPictureAndGetByteArray() {
 			fread(data, sizeof(unsigned char), row_padded, f1);
 			for (int j = 0; j < width * 3; j += 3)
 			{
-				rgb2.push_back((int)data[j]);
-				rgb2.push_back((int)data[j + 1]);
-				rgb2.push_back((int)data[j + 2]);
+				rgb2Byte.push_back((unsigned char)data[j]);
+				rgb2Byte.push_back((unsigned char)data[j + 1]);
+				rgb2Byte.push_back((unsigned char)data[j + 2]);
 			}
 		}
 
 		//TODO odwróciæ wektor wierszami - najpierw ostatni wiersz 
-		int rowLength = rgb2.size() / height;
+		int rowLength = rgb2Byte.size() / height;
 		for (int k = 1; k <= height; k++) {
 			for (int j = rowLength * (height - k); j < rowLength * (height - k + 1); j++) {
-				rgb.push_back(rgb2.at(j));
+				rgbByte.push_back(rgb2Byte.at(j));
 			}
 		}
 
@@ -79,22 +79,43 @@ bool PictureManager::openPictureAndGetByteArray() {
 }
 
 bool PictureManager::brightenImageFun() {
+
+	//rgb vector to unsignef char array to funckja to rbg vrctor
+
+
 	//if (useAsm)
 	//{
 	//	hGetProcIDDLL = LoadLibrary(TEXT("JAProjektDllAsm.dll"));
 	//}
 	//else
 	//{
-	//	hGetProcIDDLL = LoadLibrary(TEXT("JAProjektDllCpp.dll"));
-	//}
+		hGetProcIDDLL = LoadLibrary(TEXT("JAProjektDllCpp.dll"));
+	////}
 
-	//if (!hGetProcIDDLL) {
-	//	return false;
-	//}
-	//function = (brightenImage)GetProcAddress(hGetProcIDDLL, "brightenImage");
-	//if (!function) {
-	//	return false;
-	//}
+	if (!hGetProcIDDLL) {
+		return false;
+	}
+
+	function = (brightenImage)GetProcAddress(hGetProcIDDLL, "brightenImage");
+	if (!function) {
+		return false;
+	}
+
+	unsigned char* inArray = new unsigned char[rgbByte.size()];
+	unsigned char* outArray = new unsigned char[rgbByte.size()];
+
+	for (int i = 0; i < rgbByte.size(); i++) {
+		inArray[i] = rgbByte.at(i);
+	}
+
+	function(inArray, outArray, rgbByte.size(), (float)multipiler);
+
+
+	for (int i = 0; i < rgbByte.size(); i++) {
+		rgbByteSave.push_back(outArray[i]);
+	}
+
+		//brightenImage();
 
 	//std::vector<int> rgbAfterChange;
 	//std::cout << "jestem\n";
@@ -125,9 +146,9 @@ bool PictureManager::savePicture() {
 	{
 		for (int j = 0; j < height; j++)
 		{
-			img[s] = rgb.at(s);
-			img[s + 1] = rgb.at(s + 1);
-			img[s + 2] = rgb.at(s + 2);
+			img[s] = rgbByteSave.at(s);
+			img[s + 1] = rgbByteSave.at(s + 1);
+			img[s + 2] = rgbByteSave.at(s + 2);
 			s += 3;
 		}
 	}

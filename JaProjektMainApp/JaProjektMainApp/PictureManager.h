@@ -8,7 +8,7 @@
 #include <sstream>
 #include <fstream>
 
-typedef void(__cdecl* brightenImage)(INT32, double*, double*, double);
+typedef void(__cdecl* brightenImage)(unsigned char*, unsigned char*, INT32, float);
 
 
 struct Picture
@@ -46,6 +46,9 @@ private:
 	//Picture variables
 	std::vector<int> rgb; //rgb vector for pictore
 	std::vector<int> rgb2; //rgb vector for pictore
+	std::vector<unsigned char> rgbByte; //rgb vector for pictore
+	std::vector<unsigned char> rgb2Byte; //rgb vector for pictore
+	std::vector<unsigned char> rgbByteSave; //rgb vector for pictore
 	unsigned char a, r, g, b; //alpha, red, green and blue values to read from file
 	int width, height; //width and height od file
 	const int bytesPerPixel = 4; /// red, green, blue
