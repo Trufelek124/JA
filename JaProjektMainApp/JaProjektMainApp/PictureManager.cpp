@@ -20,7 +20,7 @@ PictureManager::PictureManager(char* filePathVar, char* filePathOutVar, bool asm
 }
 
 PictureManager::PictureManager() {
-	filePath = "C:\\BMP\\RGB4.bmp";
+	filePath = "C:\\BMP\\RGB3.bmp";
 	filePathOut = "img.bmp";
 	useAsm = false;
 	multipiler = 1.2f;
@@ -83,14 +83,14 @@ bool PictureManager::brightenImageFun() {
 	//rgb vector to unsignef char array to funckja to rbg vrctor
 
 
-	//if (useAsm)
-	//{
-	//	hGetProcIDDLL = LoadLibrary(TEXT("JAProjektDllAsm.dll"));
-	//}
-	//else
-	//{
+	if (useAsm)
+	{
+		hGetProcIDDLL = LoadLibrary(TEXT("JAProjektDllAsm.dll"));
+	}
+	else
+	{
 		hGetProcIDDLL = LoadLibrary(TEXT("JAProjektDllCpp.dll"));
-	////}
+	}
 
 	if (!hGetProcIDDLL) {
 		return false;
@@ -101,35 +101,115 @@ bool PictureManager::brightenImageFun() {
 		return false;
 	}
 
-	unsigned char* inArray = new unsigned char[rgbByte.size()];
-	unsigned char* outArray = new unsigned char[rgbByte.size()];
 
-	for (int i = 0; i < rgbByte.size(); i++) {
-		inArray[i] = rgbByte.at(i);
+	std::thread** threads = new std::thread * [threadCount];
+	params = (threadParam*)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY,
+		sizeof(threadParam));
+	if (params == NULL)
+		return false;
+
+
+	std::vector<Picture> vPictures;
+
+
+	int size = rgbByte.size();
+
+	int quantityForThread = (int)(size / threadCount);
+
+	for (int i = 0; i < threadCount; i++) {
+		Picture* tmp = new Picture;
+
+		//teraz tablica
+
+		int last = (i + 1) * quantityForThread;
+
+		if (((i + 2) * quantityForThread > size) && ((i + 1) * quantityForThread < size)) {
+			last = size;
+		}
+
+		int quantity = last - (i * quantityForThread);
+		unsigned char* in = new unsigned char[quantity];
+		unsigned char* out = new unsigned char[quantity];
+		int count = 0;
+
+		for (int j = i * quantityForThread; j < last; j++) {
+			in[count] = rgbByte.at(j);
+			count++;
+		}
+
+		tmp->inArray = in;
+		tmp->outArray = out;
+		tmp->size = quantity;
+		vPictures.push_back(*tmp);
 	}
 
-	function(inArray, outArray, rgbByte.size(), (float)multipiler);
+	params->pMutex = (HANDLE*)(new std::mutex());
+	params->current = &current;
+	params->function = function;
+	params->pictures = vPictures;
+	params->multiplierTP = multipiler;
 
+	for (int i = 0; i < threadCount; i++)
+	{
+		threads[i] = new thread(threadFunction, params);
 
-	for (int i = 0; i < rgbByte.size(); i++) {
-		rgbByteSave.push_back(outArray[i]);
+		SetThreadPriority(threads[i]->native_handle(), THREAD_PRIORITY_HIGHEST);
 	}
 
-		//brightenImage();
+	for (int i = 0; i < threadCount; i++)
+	{
+		threads[i]->join();
+	}
 
-	//std::vector<int> rgbAfterChange;
-	//std::cout << "jestem\n";
-	//function(temp->size, temp->inArray, temp->outArray, (double)multipiler); //usage of dll function
+	for (int i = 0; i < threadCount; i++)
+	{
+		Picture temp = params->pictures.at(i);
+		for (int j = 0; j < temp.size; j++) {
+			rgbByteSave.push_back(temp.outArray[j]);
+		}
+	}
 
-	//std::cout << "jestem\n";
 
-	//for (int i = 0; i < temp->size; i++) {
-	//	rgbAfterChange.push_back(temp->outArray[i]);
-	//}
-
-	//rgb = rgbAfterChange;
 	return true;
 
+}
+
+unsigned int __stdcall threadFunction(void* vParam)
+{
+
+	//std::cout << "jestem2";
+	threadParam* params = (threadParam*)vParam;
+
+	while (*params->current < params->pictures.size())
+	{
+		if (params->pMutex == NULL)
+			_endthreadex(0);
+		((std::mutex*)(params->pMutex))->lock();
+		int index = *(params->current);
+		(*params->current)++;
+		((std::mutex*)(params->pMutex))->unlock();
+
+
+		if (index >= params->pictures.size())
+		{
+			return 0;
+		}
+		Picture picture = params->pictures.at(index);
+
+		params->function(picture.inArray, picture.outArray, picture.size, params->multiplierTP);
+
+		std::vector<unsigned char> rgbAfterChange;
+
+		for (int i = 0; i < picture.size; i++) {
+			rgbAfterChange.push_back((int)picture.outArray[i]);
+		}
+
+		if (rgbAfterChange.size() < 1) {
+			std::cout << "nie uda³o siê :(" << "\n";
+			return false;
+		}
+	}
+	return true;
 }
 
 bool PictureManager::savePicture() {
@@ -137,7 +217,7 @@ bool PictureManager::savePicture() {
 
 	FILE* f;
 	unsigned char* img = NULL;
-	int filesize = 54 + 3 * width * height;  //w is your image width, h is image height, both int
+	int filesize = 54 + 3 * width * height;
 
 	img = (unsigned char*)malloc(3 * width * height);
 	memset(img, 0, 3 * width * height);

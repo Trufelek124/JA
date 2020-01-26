@@ -7,18 +7,29 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <thread>
+#include <mutex>
 
 typedef void(__cdecl* brightenImage)(unsigned char*, unsigned char*, INT32, float);
 
 
 struct Picture
 {
-	double* inArray;
-	double* outArray;
-	INT32 width;
-	INT32 height;
+	unsigned char* inArray;
+	unsigned char* outArray;
 	INT32 size;
 };
+
+struct threadParam
+{
+	int* current;
+	std::vector<Picture> pictures;
+	HANDLE* pMutex;
+	brightenImage function;
+	float multiplierTP;
+};
+
+unsigned int __stdcall threadFunction(void* vParam);
 
 class PictureManager
 {
@@ -39,17 +50,16 @@ private:
 	bool useAsm; //usage of asm/c++ dll
 	float multipiler;
 	Picture* temp;
-	unsigned char* image; 
-	char* imageSign;
 	unsigned int* buffer;
+	int threadCount = 4;
+
+	int current = 0;
+	threadParam* params;
 
 	//Picture variables
-	std::vector<int> rgb; //rgb vector for pictore
-	std::vector<int> rgb2; //rgb vector for pictore
-	std::vector<unsigned char> rgbByte; //rgb vector for pictore
-	std::vector<unsigned char> rgb2Byte; //rgb vector for pictore
-	std::vector<unsigned char> rgbByteSave; //rgb vector for pictore
-	unsigned char a, r, g, b; //alpha, red, green and blue values to read from file
+	std::vector<unsigned char> rgbByte; //rgb byte vector for picture
+	std::vector<unsigned char> rgb2Byte; //rgb byte vector for picture
+	std::vector<unsigned char> rgbByteSave; //rgb byte vector for picture
 	int width, height; //width and height od file
 	const int bytesPerPixel = 4; /// red, green, blue
 	const int fileHeaderSize = 14;

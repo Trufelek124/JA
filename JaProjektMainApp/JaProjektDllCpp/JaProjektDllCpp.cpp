@@ -14,10 +14,11 @@ void brightenImage(unsigned char* inArray, unsigned char* outArray, int mainSize
 
 	for (int i = 0; i < mainSize; i++) {
 		int temp = (int)inArray[i];
+
+		//cout << temp << " * " << multiplier << " -> ";
 		float temp2 = temp * multiplier;
-		//std::cout << temp << "->" << temp2 << " ->";
+		//cout << temp << endl;
 		temp = (int) temp2;
-		//std::cout << temp << "\n";
 		if (temp > 255) {
 			temp = 255;
 		}
