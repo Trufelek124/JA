@@ -9,6 +9,7 @@
 #include <fstream>
 #include <thread>
 #include <mutex>
+#include <ctime>
 
 typedef void(__cdecl* brightenImage)(unsigned char*, unsigned char*, INT32, float);
 
@@ -51,7 +52,7 @@ private:
 	float multipiler;
 	Picture* temp;
 	unsigned int* buffer;
-	int threadCount = 4;
+	int threadCount = 1;
 
 	int current = 0;
 	threadParam* params;

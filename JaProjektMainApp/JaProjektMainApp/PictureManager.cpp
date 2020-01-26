@@ -20,7 +20,7 @@ PictureManager::PictureManager(char* filePathVar, char* filePathOutVar, bool asm
 }
 
 PictureManager::PictureManager() {
-	filePath = "C:\\BMP\\RGB3.bmp";
+	filePath = "C:\\BMP\\RGB.bmp";
 	filePathOut = "img.bmp";
 	useAsm = false;
 	multipiler = 1.2f;
@@ -149,6 +149,9 @@ bool PictureManager::brightenImageFun() {
 	params->pictures = vPictures;
 	params->multiplierTP = multipiler;
 
+
+	clock_t clck = clock();
+
 	for (int i = 0; i < threadCount; i++)
 	{
 		threads[i] = new thread(threadFunction, params);
@@ -160,6 +163,11 @@ bool PictureManager::brightenImageFun() {
 	{
 		threads[i]->join();
 	}
+	clck = clock() - clck;
+
+
+	cout << "Execution time: " << ((float)clck) / CLOCKS_PER_SEC
+		<< "\nThreads: " << threadCount << endl;
 
 	for (int i = 0; i < threadCount; i++)
 	{
