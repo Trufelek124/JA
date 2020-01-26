@@ -1,4 +1,1 @@
-﻿  JaProjektDllCpp.cpp
-C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektDllCpp\JaProjektDllCpp.cpp(13,1): warning C4273: "brightenImage": niespójne powiązanie biblioteki dll
-C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektDllCpp\JaProjektDllCpp.h(7,27): message : zobacz poprzednią definicję „brightenImage”
-  JaProjektDllCpp.vcxproj -> C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektDllCpp.dll
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.BuildSteps.Targets(175,5): error MSB3061: Nie można usunąć pliku „x64\Debug\JaProjektDllCpp.tlog\JaProjektDllCpp.lastbuildstate”. Proces nie może uzyskać dostępu do pliku „C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektDllCpp\x64\Debug\JaProjektDllCpp.tlog\JaProjektDllCpp.lastbuildstate”, ponieważ jest on używany przez inny proces.

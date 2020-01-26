@@ -3,6 +3,4 @@ C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureMana
 C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(54,17): warning C4101: "tmp": lokalna zmienna, do której nie istnieje odwołanie
 C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(34,7): warning C4101: "i": lokalna zmienna, do której nie istnieje odwołanie
 C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(115,27): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-  Source.cpp
-  Generowanie kodu...
   JaProjektMainApp.vcxproj -> C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektMainApp.exe

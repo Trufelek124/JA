@@ -11,6 +11,7 @@
 #include <mutex>
 #include <ctime>
 
+using namespace std;
 typedef void(__cdecl* brightenImage)(unsigned char*, unsigned char*, INT32, float);
 
 
@@ -31,11 +32,12 @@ struct threadParam
 };
 
 unsigned int __stdcall threadFunction(void* vParam);
+void __stdcall appendLogs(string data);
 
 class PictureManager
 {
 public:
-	PictureManager(char* filePathVar, char* filePathOutVar, bool asmUse, float multipilerVar);
+	PictureManager(char* filePathVar, char* filePathOutVar, bool asmUse, int threadsQuantity, float multipilerVar);
 	PictureManager();
 	virtual ~PictureManager();
 	bool openPictureAndGetByteArray();
@@ -52,7 +54,7 @@ private:
 	float multipiler;
 	Picture* temp;
 	unsigned int* buffer;
-	int threadCount = 1;
+	int threadCount;
 
 	int current = 0;
 	threadParam* params;

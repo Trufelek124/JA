@@ -115,7 +115,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
-      <AdditionalDependencies>C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektDllCpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektDllCpp.lib;C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektDllAsm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

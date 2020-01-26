@@ -12,11 +12,12 @@
 
 using namespace std;
 
-PictureManager::PictureManager(char* filePathVar, char* filePathOutVar, bool asmUse, float multipilerVar) {
+PictureManager::PictureManager(char* filePathVar, char* filePathOutVar, bool asmUse, int threadsQuantity, float multipilerVar) {
 	filePath = filePathVar; //"C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testoutt.jpg";
 	filePathOut = filePathOutVar; //"C:\\Users\\User\\Documents\\studia\\ja\\jpeg-build\\jpeg-6b\\testout.jpg";
 	useAsm = asmUse;
 	multipiler = multipilerVar;
+	threadCount = threadsQuantity;
 }
 
 PictureManager::PictureManager() {
@@ -24,13 +25,12 @@ PictureManager::PictureManager() {
 	filePathOut = "img.bmp";
 	useAsm = false;
 	multipiler = 1.2f;
+	threadCount = 1;
 }
 
 PictureManager::~PictureManager() {}
 
 bool PictureManager::openPictureAndGetByteArray() {
-	//TODO OPEN AND read bmp file into byte array
-
 		int i;
 		FILE* f1 = fopen(filePath, "rb");
 
@@ -165,9 +165,20 @@ bool PictureManager::brightenImageFun() {
 	}
 	clck = clock() - clck;
 
+	string dllInUse = "CPP";
+	if (useAsm) {
+		dllInUse = "ASM";
+	}
 
-	cout << "Execution time: " << ((float)clck) / CLOCKS_PER_SEC
-		<< "\nThreads: " << threadCount << endl;
+	string logData = "Execution time: " + to_string(((float)clck) / CLOCKS_PER_SEC)
+		+ "\nThreads: " + to_string(threadCount) + "\n"
+		+ "Used DLL: " + dllInUse + "\n"
+		+ "Image size: " + to_string(width) + "x" + to_string(height) + "\n"
+		+ "\n" 
+		+ "__________________________________\n";
+	appendLogs(logData);
+
+	cout << logData;
 
 	for (int i = 0; i < threadCount; i++)
 	{
@@ -203,9 +214,13 @@ unsigned int __stdcall threadFunction(void* vParam)
 			return 0;
 		}
 		Picture picture = params->pictures.at(index);
-
 		params->function(picture.inArray, picture.outArray, picture.size, params->multiplierTP);
 
+		cout << "jestem\n";
+
+		//for (int i = 0; i < picture.size; i++) {
+		//	cout << (int)picture.outArray[i] << ", ";
+		//}
 		std::vector<unsigned char> rgbAfterChange;
 
 		for (int i = 0; i < picture.size; i++) {
@@ -274,4 +289,11 @@ bool PictureManager::savePicture() {
 	cout << "Done" << endl;
 
 	return true;
+}
+
+void appendLogs(string data) {
+	ofstream outfile;
+
+	outfile.open("log.txt", std::ios_base::app); // append instead of overwrite
+	outfile << data;
 }

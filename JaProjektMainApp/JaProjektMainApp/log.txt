@@ -1,0 +1,29 @@
+Execution time: 0.987000
+Threads: 1
+Used DLL: CPP
+
+__________________________________
+Execution time: 0.447000
+Threads: 4
+Used DLL: CPP
+Image size: 1390x470
+
+__________________________________
+Execution time: 0.018000
+Threads: 1
+Used DLL: ASM
+Image size: 134x68
+
+__________________________________
+Execution time: 0.962000
+Threads: 1
+Used DLL: ASM
+Image size: 1390x470
+
+__________________________________
+Execution time: 0.333000
+Threads: 1
+Used DLL: ASM
+Image size: 597x310
+
+__________________________________

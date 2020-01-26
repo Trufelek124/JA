@@ -1,0 +1,12 @@
+﻿  PictureManager.cpp
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(70,43): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(56,17): warning C4101: "tmp": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(36,7): warning C4101: "i": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\PictureManager.cpp(117,27): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+  Source.cpp
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\Source.cpp(39,30): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\Source.cpp(40,31): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\Source.cpp(43,2): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\string.h(133): message : zobacz deklarację „strcpy”
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektMainApp\Source.cpp(44,2): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\string.h(133): message : zobacz deklarację „strcpy”

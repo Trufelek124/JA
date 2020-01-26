@@ -1,0 +1,11 @@
+﻿  pch.cpp
+  dllmain.cpp
+  JaProjektDllCpp.cpp
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektDllCpp\JaProjektDllCpp.cpp(13,1): warning C4273: "brightenImage": niespójne powiązanie biblioteki dll
+C:\Users\User\Documents\ja\projekt\JaProjektMainApp\JaProjektDllCpp\JaProjektDllCpp.h(7,27): message : zobacz poprzednią definicję „brightenImage”
+     Trwa tworzenie biblioteki C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Release\JaProjektDllCpp.lib i obiektu C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Release\JaProjektDllCpp.exp
+  Trwa generowanie kodu
+  Previous IPDB not found, fall back to full compilation.
+  All 2 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Zakończono generowanie kodu
+  JaProjektDllCpp.vcxproj -> C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Release\JaProjektDllCpp.dll
