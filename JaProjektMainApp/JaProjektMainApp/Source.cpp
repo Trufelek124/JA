@@ -34,17 +34,17 @@ void menu() {
 int main(int argc, char* argv[])
 {
 
-	//menu();
+	menu();
 	
-//	int n = filePathInS.length();
-//	int m = filePathOutS.length();
-//	char* filePathIn = new char[n+1];
-//	char* filePathOut = new char[m + 1];
-//	strcpy(filePathIn, filePathInS.c_str());
-//	strcpy(filePathOut, filePathOutS.c_str());
+	int n = filePathInS.length();
+	int m = filePathOutS.length();
+	char* filePathIn = new char[n+1];
+	char* filePathOut = new char[m + 1];
+	strcpy(filePathIn, filePathInS.c_str());
+	strcpy(filePathOut, filePathOutS.c_str());
 
-	//PictureManager* pManager = new PictureManager(filePathIn, filePathOut, dllAsm, threads, multiplier);
-	PictureManager* pManager = new PictureManager();
+	PictureManager* pManager = new PictureManager(filePathIn, filePathOut, dllAsm, threads, multiplier);
+	//PictureManager* pManager = new PictureManager();
 	pManager->openPictureAndGetByteArray();
 	pManager->brightenImageFun();
 	pManager->savePicture();
