@@ -23,8 +23,8 @@ PictureManager::PictureManager(char* filePathVar, char* filePathOutVar, bool asm
 PictureManager::PictureManager() {
 	filePath = "C:\\BMP\\RGB.bmp";
 	filePathOut = "img.bmp";
-	useAsm = false;
-	multipiler = 1.2f;
+	useAsm = true;
+	multipiler = 1.7f;
 	threadCount = 1;
 }
 
@@ -72,7 +72,10 @@ bool PictureManager::openPictureAndGetByteArray() {
 			}
 		}
 
-
+		//for (int i = 0; i < rgbByte.size(); i++) {
+		//	cout << (int)rgbByte.at(i) << ", ";
+		//}
+		cout << endl;
 		fclose(f1);
 
 	return true;
@@ -185,6 +188,7 @@ bool PictureManager::brightenImageFun() {
 		Picture temp = params->pictures.at(i);
 		for (int j = 0; j < temp.size; j++) {
 			rgbByteSave.push_back(temp.outArray[j]);
+			cout << (int)temp.inArray[j] << " -> " << (int)temp.outArray[j] << "\n";
 		}
 	}
 
@@ -216,10 +220,10 @@ unsigned int __stdcall threadFunction(void* vParam)
 		Picture picture = params->pictures.at(index);
 		params->function(picture.inArray, picture.outArray, picture.size, params->multiplierTP);
 
-		cout << "jestem\n";
+		cout << "\njestem\n";
 
 		//for (int i = 0; i < picture.size; i++) {
-		//	cout << (int)picture.outArray[i] << ", ";
+		//	cout << (int)picture.inArray[i] << " -> " << (int)picture.outArray[i] << "\n";
 		//}
 		std::vector<unsigned char> rgbAfterChange;
 

@@ -1,4 +1,3 @@
 ﻿  Assembling JaProjektDllAsm.asm...
-JaProjektDllAsm.asm(18): error A2006: undefined symbol : rsx
-JaProjektDllAsm.asm(21): error A2006: undefined symbol : esx
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations\masm.targets(70,5): error MSB3721: Polecenie ml64.exe /c /nologo /Zi /Fo"x64\Debug\JaProjektDllAsm.obj" /W3 /errorReport:prompt  /TaJaProjektDllAsm.asm zostało zakończone; kod błędu: 1.
+     Trwa tworzenie biblioteki C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektDllAsm.lib i obiektu C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektDllAsm.exp
+  JaProjektDllAsm.vcxproj -> C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Debug\JaProjektDllAsm.dll
