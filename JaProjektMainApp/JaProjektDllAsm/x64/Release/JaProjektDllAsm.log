@@ -1,1 +1,4 @@
-﻿
+﻿  Assembling JaProjektDllAsm.asm...
+     Trwa tworzenie biblioteki C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Release\JaProjektDllAsm.lib i obiektu C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Release\JaProjektDllAsm.exp
+  LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
+  JaProjektDllAsm.vcxproj -> C:\Users\User\Documents\ja\projekt\JaProjektMainApp\x64\Release\JaProjektDllAsm.dll

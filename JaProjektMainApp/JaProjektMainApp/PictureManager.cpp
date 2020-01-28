@@ -170,7 +170,7 @@ bool PictureManager::brightenImageFun() {
 		dllInUse = "ASM";
 	}
 
-	string logData = "Execution time: " + to_string(((float)clck) / CLOCKS_PER_SEC)
+	string logData = "Execution time: " + to_string(((double)clck) / CLOCKS_PER_SEC)
 		+ "\nThreads: " + to_string(threadCount) + "\n"
 		+ "Used DLL: " + dllInUse + "\n"
 		+ "Image size: " + to_string(width) + "x" + to_string(height) + "\n"
